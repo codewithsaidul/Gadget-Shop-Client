@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import GoogleLogin from "../../components/Shared/GoogleLogin";
 
 const Login = () => {
 
-  const { LoginUser } = useAuth()
+  const { LoginUser, setUser } = useAuth()
 
   const navigate = useNavigate();
 
@@ -16,8 +17,12 @@ const Login = () => {
 
 
   const onSubmit = (data) => {
-    LoginUser(data.email, data.password);
-    navigate('/')
+    LoginUser(data.email, data.password)
+    .then(result => {
+      setUser(result.user)
+      navigate("/");
+    })
+    .catch(() => console.log("E-mail or Password Wrong"))
   }
 
   return (
@@ -69,6 +74,10 @@ const Login = () => {
               <button type="submit" className="btn btn-primary">Login</button>
             </div>
           </form>
+
+          <div className="mt-3 px-6">
+            <GoogleLogin />
+          </div>
 
           <p className="my-6 ml-6 text-sm font-light">
             Don&apos;t Have an Account?{" "}
