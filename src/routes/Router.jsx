@@ -8,6 +8,7 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./private/PrivateRoute";
+import Overview from "../pages/dashboard/Overview";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
     ),
     children: [
       // Add your dashboard routes here
+      {
+        path: "/dashboard/overview",
+        element: <Overview/>,
+      }
     ],
   },
 ]);
