@@ -31,18 +31,17 @@ const Register = () => {
         .then(res => {
           if (res.data.insertedId) {
             Swal.fire({
-              position: "top-end",
+              position: "top-center",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Registration Successfull",
               showConfirmButton: false,
               timer: 1500
             });
-
+            setUser(result.user);
+            navigate("/");
             reset();
           }
         });
-        setUser(result.user);
-        navigate("/");
       })
       .catch(() => {
         Swal.fire({

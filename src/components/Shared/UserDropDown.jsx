@@ -24,7 +24,7 @@ const UserDropDown = () => {
         className="dropdown-content bg-base-100 rounded-box z-[1] w-52 pl-6 p-2 shadow"
       >
         <li>
-          <Link>Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
         <li className="mt-4">
           <button onClick={handleLogOut} className="btn btn-primary btn-outline btn-sm">Log Out</button>

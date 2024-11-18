@@ -6,36 +6,49 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import DashboardLayout from "../layouts/DashboardLayout";
+import PrivateRoute from "./private/PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      { 
-        index: true, 
-        element: <Home />
+      {
+        index: true,
+        element: <Home />,
       },
       {
         path: "products",
-        element: <Products />
+        element: <Products />,
       },
       {
         path: "about",
-        element: <About />
+        element: <About />,
       },
       {
         path: "contact",
-        element: <Contact />
+        element: <Contact />,
       },
       {
         path: "login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "register",
-        element: <Register />
+        element: <Register />,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      // Add your dashboard routes here
     ],
   },
 ]);
