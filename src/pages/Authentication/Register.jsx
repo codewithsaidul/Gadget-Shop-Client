@@ -24,7 +24,7 @@ const Register = () => {
     const role = data.role;
     const status = role === "buyer" ? "approved" : "pending";
     const wishlist = [];
-    const userData = { email, password, role, status, wishlist };
+    const userData = { email, role, status, wishlist };
     CreateUser(email, password)
       .then((result) => {
         axios.post(`http://localhost:4000/users`, userData)

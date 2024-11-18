@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "../../components/Shared/GoogleLogin";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -17,12 +18,22 @@ const Login = () => {
 
 
   const onSubmit = (data) => {
-    LoginUser(data.email, data.password)
+    const email = data.email;
+    const password = data.password;
+    LoginUser(email, password)
     .then(result => {
       setUser(result.user)
       navigate("/");
     })
-    .catch(() => console.log("E-mail or Password Wrong"))
+    .catch(() => {
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: "Email or Password Wrong!",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
   }
 
   return (
